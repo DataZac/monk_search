@@ -9,10 +9,11 @@ import monk
 
 def get_valid_files(root, patterns):
     valid_files = []
+    # can only be interated once
     this_path = os.walk(root)
-    for pattern in patterns:
-        for path, subdirs, files in this_path:
-            for name in files:
+    for path, subdirs, files in this_path:
+        for name in files:
+            for pattern in patterns:
                 if pattern in os.path.join(path, name):
                     valid_files.append(os.path.join(path, name))
 
@@ -27,9 +28,7 @@ def lines_parser(lines):
 def record_extractor(lines,topic, df):
     new_row = {"topics": topic,"tags": None, "content": [], "notes": []}
     for line in lines:
-        # print("start",line)
         if line.startswith("--"):
-            # print('if')
             if new_row["tags"] != None:
                 df = df.append(new_row, ignore_index=True)
                 new_row = {"topics":topic, "tags": None, "content": [], "notes": []}
@@ -37,22 +36,18 @@ def record_extractor(lines,topic, df):
             new_row["tags"] = line[2:]
 
         elif line.startswith("-") and not line.startswith("--"):
-            # print('elif')
             new_row["content"] += [line]
         else:
-            # print('else')
             try:
                 new_row["notes"] += [line]
             except:
                 "No proper line"
 
-        # print(new_row)
     return df
 
 
 def get_data(paths):
     df = pd.DataFrame({"topics": [],"tags":[], "content":[], "notes":[]})
-    print(paths)
     for doc in paths:
         with open(doc) as f:
             try:
@@ -84,21 +79,3 @@ if __name__ == '__main__':
 
 
 
-
-#
-
-#
-
-#
-
-
-
-#
-
-# #topic=["baking"], notes=["bake"],  content=["Until"]
-
-# #searcher.search_topic(df, topic=["baking"])
-
-# #monk.search(topic=["baking"])
-
-# #monk.search(df, notes=["bake"])

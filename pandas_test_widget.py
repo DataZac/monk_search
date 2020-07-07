@@ -1,9 +1,7 @@
 import pandas as pd
-
+import os
 import monk, load_data
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 from PyQt5.QtWidgets import QHeaderView, QAbstractScrollArea
 
 
@@ -77,7 +75,7 @@ class PandasModel(QtCore.QAbstractTableModel):
 
 class PandasWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
-        self.root = "/home/jonas/Shared/Notes_usages"
+        self.root = os.getcwd()
         self.file_key = [".txt"]
         self.topics = []
         self.tags = []
@@ -88,14 +86,20 @@ class PandasWidget(QtWidgets.QWidget):
         QtWidgets.QWidget.__init__(self, parent=None)
         vLayout = QtWidgets.QVBoxLayout(self)
 
+        # first line of buttons
         hLayout0 = QtWidgets.QHBoxLayout()
+        # path button
         self.sRoot = QtWidgets.QLineEdit(self)
-        self.sRoot.setPlaceholderText("./")
+        self.sRoot.setPlaceholderText(os.getcwd())
+        # file key
         self.sFileKey = QtWidgets.QLineEdit(self)
         self.sFileKey.setPlaceholderText("[.txt]")
+        # or search
         self.sAll = QtWidgets.QLineEdit(self)
         self.sAll.setPlaceholderText("Tags, Content or Notes")
+        # set button
         self.loadBtn0 = QtWidgets.QPushButton("Set", self)
+        # set button function, load data function call
         self.loadBtn0.clicked.connect(self.set_conf_get_df)
         hLayout0.addWidget(self.sRoot)
         hLayout0.addWidget(self.sFileKey)
@@ -103,6 +107,7 @@ class PandasWidget(QtWidgets.QWidget):
         hLayout0.addWidget(self.sAll)
         vLayout.addLayout(hLayout0)
 
+        # second line of buttons
         hLayout = QtWidgets.QHBoxLayout()
         self.sTopics = QtWidgets.QLineEdit(self)
         self.sTopics.setPlaceholderText("Topics")
@@ -112,12 +117,11 @@ class PandasWidget(QtWidgets.QWidget):
         self.sContent.setPlaceholderText("Content")
         self.sNotes = QtWidgets.QLineEdit(self)
         self.sNotes.setPlaceholderText("Notes")
+        self.loadBtn = QtWidgets.QPushButton("Search", self)
         hLayout.addWidget(self.sTopics)
         hLayout.addWidget(self.sTags)
         hLayout.addWidget(self.sContent)
         hLayout.addWidget(self.sNotes)
-
-        self.loadBtn = QtWidgets.QPushButton("Search", self)
         hLayout.addWidget(self.loadBtn)
         vLayout.addLayout(hLayout)
         self.pandasTv = QtWidgets.QTableView(self)
@@ -131,22 +135,15 @@ class PandasWidget(QtWidgets.QWidget):
         file_key_temp = self.sFileKey.text().split(",")
         if not len(root_temp) < 2: self.root = root_temp
         if not len(file_key_temp[0]) == 0: self.file_key = file_key_temp
-        print("22xs", self.root, self.file_key)
-        print("29sj9",self.data_base.head())
+
         self.data_base = load_data.get_data(load_data.get_valid_files(self.root, self.file_key))
-        print("29sdfdj9",self.data_base.head())
-        load_data.get_data(load_data.get_valid_files(" /home/jonas/Shared/Notes_usages/", [".txt"]))
+
 
     def search_df(self):
-        print("Topics")
         self.topics = self.sTopics.text().split(",")
-        print("Tags")
         self.tags = self.sTags.text().split(",")
-        print("Content")
         self.content = self.sContent.text().split(",")
-        print("Notes")
         self.notes = self.sNotes.text().split(",")
-        print("All")
         self.all = self.sAll.text().split(",")
 
         if len(self.topics[0]) == 0: self.topics = []

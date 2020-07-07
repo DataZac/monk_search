@@ -4,7 +4,6 @@ import pdb
 
 import load_data
 
-from tabulate import tabulate
 
 from pprint import pprint
 
@@ -103,7 +102,7 @@ def search(df, **kwargs):
         if search_field.shape[0] > 0 :
             other_than_topic = True
 
-    print(df.shape[0], df_topics.shape[0])
+    #print(df.shape[0], df_topics.shape[0])
     print("other than topic", other_than_topic)
     # return joined seach df's ( each filtered by detailed cats)
     if other_than_topic:
@@ -114,7 +113,6 @@ def search(df, **kwargs):
     # case no search match (search frame == base frame) -> retrn no result
     # catch case when frame was already with no result
     elif (df.shape[0] == df_topics.shape[0]) and (True in [topics_seach, tags_seach, notes_seach, content_seach]):
-        print("here")
         return pd.DataFrame({"topics": ["no result"],"tags":["no result"], "content":["no result"], "notes":["no result"]})
 
     # successfull search

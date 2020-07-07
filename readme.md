@@ -1,8 +1,9 @@
 # monk_search
 ### trouble shooting
-1. No files found
+1. build in windows:
 ```
-ä sz acli aidl
+pyinstaller main.py --onefile
+
 ```
 
 well..
