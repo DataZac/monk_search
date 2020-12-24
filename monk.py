@@ -117,6 +117,7 @@ def search(df, **kwargs):
 
     # successfull search
     else:
+        print(df_topics)
         return df_topics[["topics","tags", "content", "notes"]]
 
 
