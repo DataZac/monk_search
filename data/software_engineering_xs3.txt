@@ -1,0 +1,637 @@
+Links:
+
+https://www.isaqb.org/find-trainings/
+
+The Open Group - TOGAF Zertifizierung (Togaf)
+
+https://www.developertoarchitect.com/lessons/
+
+Fundamentals oft Software ARchitecture, Neil Ford
+
+E1793450
+
+
+
+Glossar:
+
+- Atom: Elemente, die keine Teile enthalten und unabhängig voneinander versioniert werden können
+
+- Konfiguration: Einheit von Arbeitsergebnissen, die eine Funktionerfüllen
+
+- Release: Konfiguration, die weitergegeben wird
+
+- Validieren vs. Verifizieren: das richtige vs. auf die richtige Weise
+
+- effektiv vs. effizient: das richtige vs. auf die richtige Weise
+
+- Szenario: Möglichkeiten, das System zu benutzen
+
+- Reverse-Engineering: vom Code zur Doku/Anforderungen
+
+- Refaktoring: Prozess Verbesserungen an einem Programm vorzunehmen
+
+- soziotechnisch: Menge von Menschen und damit verknüpfte Systeme
+
+- Informationssicherheit: Vertraulichkeit, Verfügbarkeit und Integrität
+
+- Datenschutz meist auf Grund genauer gesetzlicher Vorgaben
+
+- Risiko: abtrakte Entität, mit p(Geldschaden)
+
+- Artefakt: Softwareartefakt. Klasse, Object, Komponente
+
+- Framework: kooperation von Softwareartefakten
+
+- Produktlinie: selbes Core-System
+
+
+
+-- eng vs. dev. vs. architect
+
+- architect: designs, builds, supervises construction, to architect: "design & make"
+
+- engineer: designs, builds, maintains, to engineer: "design & build"
+
+- to develop: "to grow/mature"
+
+
+
+- engineer: applies principles of softeare engineering to the design, development, maintainance, testing and eval.
+
+- architect: softwar dev expert, that makes high level design choices, dictates standards for coding, tools, platforms
+
+- developer: concerned with facests of software development: research, design, programming, testing.
+
+- its like architect vs. dev (and eningeer is a better dev)
+
+- dev: narrow on tasks, eng: designs & plans, business goal in mind, big picture: architect even bigger, high level, standards, tools, platforms
+
+- Architect muss: high level design choices, kontakt business in some way. Eng: CAN have this properties or do these things
+
+
+
+Summary book:
+
+
+
+Wiki: Architektur: Baukunst mit zweckbestimmter Gestaltung
+
+
+
+-- Einführung
+
+Softwareprobleme entstehen auf Grund zu geringer Erwartungen (als nötig) --> mehr kosten, weniger Zuvelässig und steigenden Anfordrungen --> schnell, groß, komplex
+
+Software umfasst auch Doku.
+
+SE beschäftigt sich mit allen Aspekten der SW-Herstellung
+
+SE-Aktivitäten: Spezif., Entwickl., Validierung., Evolution.
+
+
+
+Teil des Systems-Engineering
+
+
+
+Jedes Software-Produkt ist ein System: group of interacting or interrelated entities to form a unified whole.
+
+System is is described by its boundaries, structure and purpose
+
+
+
+Generische vs. angepasste (Bestellungen) Lösungen: oft generisch + angepasst (SAP)
+
+
+
+Wesentliche Askpekte eines Software-Systems: wartbar, verlässlich, effizient, akzeptierbar
+
+Informationssicherheit, Wiederverwendung, Req-Engin., Verlässlichkeit, Softwareprozesse
+
+
+
+
+
+Technische Disziplin, mit allen Aspekten der SW-Herstellung: Dinge zum Laufen bringen mit Theorein, Methoden + tools
+
+Zu allen Aspekten gehören auch Projektverwaltung, Entwicklung von Tools, Methoden oder Theorien
+
+
+
+SW ist mit Systems-Engineering + Informatik verbunden
+
+
+
+-- Prozesse:
+
+- Top-Level:
+
+
+
+
+
+- Softwareprozesse
+
+ = Aktivitäten die zu einem *********SW-PRodukt********* führen + Umgang mit Änderungen gehören zu einem guten Vorgehens(modell)
+
+( Aktivitäten = Spezif., Entwickl., Validierung., Evolution.)
+
+(Änderungen: Prototypen, Inkrementell, Bohm)
+
+
+
+Vorgehensmodelle (= Aufbau von Softwareprozessen = Aktivitäten)
+
+1. Wasserfall, 2. inkrementell, 3. Widerverwendugnsorientier (Bausteine die immer weider benutzt werden)
+
+1: gut überwachbar
+
+2: kann sich mit bürokkratie mischen
+
+3: kann Anforderungen nicht treffen, Versionierung schwierig --> 1 Packet ändert sich)
+
+Prozessbeschreibungen enthalten neben Aktivitäten: Rollen, Produkte, Nebenbedingungen
+
+
+
+
+
+Rational Unified Process:
+
+trennt Phasen von Aktivitäten, vereint Vorteile von Vorgehensmodellen
+
+
+
+Wahl von Modellen und Ausgestaltung der Aktivitäten hängt vom System (z.B. Echtzeit vs. Geschäftssystem und dem Kunden ab, ...)
+
+
+
+
+
+Modell (z.B. Wasserfall) enthält die wichtigen Prozesse, die Standardisiert sind
+
+Req. Eng.                                                                                                 Weiter unten in den Kapitelen alles beschrieben
+
+              Architektur Entwurd                                                               Weiter unten in den Kapitelen alles beschrieben
+
+                            Implementierung                                                                    Weiter unten in den Kapitelen alles beschrieben
+
+                                           Testing                                                          Weiter unten in den Kapitelen alles beschrieben
+
+                                                         Betrieb/Evolution                         Weiter unten in den Kapitelen alles beschrieben
+
+
+
+
+
+
+
+-- Agile Softwareentwicklung
+
+- Vorteil: mehr Zeit für Entwicklung und Tests als auf Planung bei Wasserfall. Anforderungsänderungen besser zu bewältigen
+
+- Incrementelle Entwicklungsverfahren auf schnelle Releases, Einbezug des Kunden, reduzierung von Prozessaufwand, qualitativer Code
+
+- Xtreme Programming: übersteigerung guter praktiken, Test first principle, Pair-programming, häufige Releases, kontinuierliche Verbesserung
+
+- Plan vs. agil: reqAnalyse-(ReqSpez)-EntwurfImplementierung: bei agil entfällt der Plan/mitte in Klammern (). Hauptunderschied ist einerseits, wie getestet wird.
+
+- Kunde wird mit einbezogen
+
+- Scrum eher auf Verwaltung iterativer Entwicklung als auf technische Ansätze
+
+- ob agil ist eine Kulturfrage, funktioniert meist nur bei guten Entwicklern.
+
+- Skalierung von agilen Methoden auf große Systeme schwierig: große Systeme sind Sammlungen von Separaten System, die untereinander kommunizieren, viel Zeit geht für Systemkonfiguration drauf -> hindert inkrementelle Entwicklung und häufiger Systemintegration, Teams wandeln sich
+
+-> große Systeme brauchen mehr Entwurfsarbeit und Doku als nur Code, Mechanismen zur Teamübergreifenden Kommunikation müssen genutzt werden: Tel, Video, E-Mail, instant Messengerj, System muss trotzdem häufig zusammengesetzt werden.
+
+
+
+-- Requirements engineering
+
+- Anforderungen stellen dar was ein System leisten soll, und seine Einschränken der Funktion
+
+- Funktionale Anf.: Dienste die das System bereitstellen soll, wie Berechnunegn durchgeführt werden sollen
+
+- Nicht funkt. Anf.: bez. sich meist auf das System als ganzes, oft Produkt-, Unternehmens- oder externe Anforderungen
+
+- Gesamtspezif. ist vereinb. Aufstellung des Systems, die von Kunden + System-Entwicklern gelesen werden soll
+
+- Prozess Req-Engineering: POC, Anf. Erhebung+Analyse -> danach Spezif. -> Validierung -> Management
+
+- Validierung: "Macht das Sinn?" Konsistent, Realisierbarkeit, Vollständigkeit, ...
+
+- Management: Steuerung und Kontrolle von Änderungen (Anf. führen immer zu Änderungen)
+
+
+
+-- Systemmoldellierung
+
+- Modelle dienen Diskussion, Dokumentation oder Implementierungshilfe
+
+- Wird beim Req-Engin. durchgeführt oder bei dem Entwurfsprozess (s. next)
+
+- Modelle werden während Req. Eng. verwendet um Stärken und Schwächen zu diskutiern -> neue Anf.
+
+- Lässt Details aus -> Abstraktion ( vs. Repräsentation)
+
+- Modelle aus verschiedenen Perspektiven: extern (Bezug zu Umgebung), interaktiv (Interaktion zwischen sys und Umgebung/Komponenten), strukurelle Perspektive (Aufbau Sys. oder Struktur der Daten), oder verhaltensbasierete Perspektive, dynamisches (Antwortverhalten)
+
+- Es gibt verschiedene UML-Diagrammtypen:
+
+- Kontextdiagramme (Grenzen und Beziehung zu Umgebung/anderen Systemkomponenten): Aktivitätsdiagramm, Kontextdiagramm
+
+- Interaktionsdiagramme: Sequenzdiagramm (von oben nach Unten, zw. Akteuren und Objecten), Anwendungsfalldiagramm (Stichwort Szenarios,
+
+mit Akteuren auf Bild und Aktion workds)
+
+- Strukturmodelle: dznamisch oder statisch?: Klassendiagramme (bei objektorientierten Systemodellen; kann anders als Implementierungsobjekte sein),
+
+Generalisierungs-(diagramm?) (Ford <- PKW <- Auto), Aggregations-(diagram?)
+
+- Verhaltensmodelle: beschreiben dynamisches Verhalten, das System reagiert auf Reize: (Daten und/oder Ereignisse), Zustands+Auslösebeschreibungen
+
+- Model-driven-Architektur (hebt Abstraktionsebene an, Entwickler nichtmehr soo sehr mit Code beschäftigt)
+
+
+
+-- Entwurf der Architektur (verwendet unter anderem Modelle aus 5., aber das Kapitel geht mehr auf das ENTWERFEN ( action verb) ein)
+
+- Architektur: Plan des Zusammenspiels von Systemkomponent (Conceptual Model), der Struktur
+
+- Entwurf
+
+- wichtig weil Leistungsfähigkeit, Stabilität, Verbreitungs- und Wartungsfähigkeit beeinflusst.
+
+- Konkreter als die Systemmodelle vom Req.-Eng.
+
+- Stellt Beziehung zw. Req-Eng und dem allgemeinen Entwurf dar
+
+- Existiert neben Schnitstellen, Datenbanken und Komponentenentwurf
+
+- Befasst sich damit, wie ein System organisiert ist und mit dessen Gesamtstruktur
+
+- hängt oft von Nicht-funktionalen-Anforderungen ab:
+
+Leistungsfähigkeit (Zentrale komponenten)
+
+Informationssicherheit (Schichtmuster)
+
+Betriebssicherheit (Komponenten möglichst in einer oder wenigen, dicht beinander liegenden Einheiten)
+
+Verfügbarkeit (redundante Modelle verwenden)
+
+Wartbar (kleine, unabhängige Komponenten)
+
+- Bewertung: schwierig, da an Realität gemessen. Aber Vgl. mit Ref-Architekturen und Mustern möglich
+
+- Sichten
+
+logische, Prozess-, Entwicklungssicht, physische, konzeptuelle
+
+- Muster
+
+Um Wissen zu sharen und wiederzuverwenden
+
+MVC: model (kapselt Anwendungszustand)-view (stell Modell dar, sendet Ereginisse)-controller (Steuerung/Eingace) (z.B. für grafische, sich ändernde Anzeigen)
+
+Schichtenarchitektur. Bei mehrstufiger Sicherheit, wenn Schicht nur vorangehende Schicht aufbaut, für 'Trennung für Entwicklung
+
+Repository-Architektur (star like) zentraler Datenspeicher, Komponenten unabhängig
+
+Client-Server Zugriff von unterschiedlichen Orten auf gemeinsame Daten, Server können über Netzwerk verteilt sein
+
+Pipes & Filter Pipeline mit Transformationen
+
+- Modelle
+
+(für welche Muster verwendet werden können
+
+Allgemeine Modelle für Anwendungssysteme, Transaktionsverarbeitende Systeme, Sprachverarbeitende Systeme
+
+
+
+-- 7 Entwurd und Implementierung
+
+- Einordung: Teil des Softwareprozesses, der wiederrum in plan/agil unterteilt ist
+
+- Ausführbares System wird entwickelt
+
+- Die architektur muss entworfen werden (zur doku, die Klassen/komponenten, Schnitstellen)
+
+- Bei einfachen Systemen kann der einzige Schritt im SE sein
+
+- Entwurf:
+
+Komponenten und Beziehungen untereinander werden bestimmt
+
+- Objectorientierter Entwurd mit UML
+
+1. Kontext & Interaction (Beziehung klar machen und was getan werden soll)
+
+2. Entwurf mit Muster (z.B. Schichten)
+
+3. Bestimmung Objektklassen
+
+4. Entwurfsmodelle (soll Objekte in einem System zeigen, Subsystemmodelle, Sequenzmodelle, Zustandsmodelle)
+
+Normalerweise bei UML 2 Typen mindestens: Strukturelle modelle, dynamische Modelle
+
+5. Schnitstellen spec
+
+Objectmodelle gehören neben dem Architekturentwurf zum Systementwurf dazu
+
+- Muster
+
+Observer-Pattern (software design pattern; for object orientet design)
+
+
+
+- 7.3 Implementierungsaspekte
+
+- Wiederverwendung (Komponente, Dienste, Systeme)
+
+Auf verschiedenen Ebenen möglich: Abstrkte Muster, Objektmuster, Komponenten-..., System-
+
+- Konfigurationsverwaltung
+
+K-Managemtn ist der Vorgang Änderungen eines Systems zu verwalten. Kofiguration = Einheit, in die alle Ergebnisse gepackt werden. Komponenten, Programme, Datenbanken, Dokumente+Datein.
+
+Bezieht sich auf den Lebenslauf und Konfigurationseinheiten
+
+Grundlegende Aktivitäten: Versionsmanagement, Systemingeration (um System zu verzeugen) & Problemverfolgung
+
+- Host-Ziel-Entwicklung
+
+Host Entwicklung, Ziel ausführung
+
+- 7.4 Open-Source
+
+- Vorteil: viele Leuten können Änderungen und Verbesserungen vorschlagen: sicherer, qualitativ hochwertigere Software.
+
+GNU : reziprok -> verwende ich GNU-litenzierte Komponenten, ist meine Software auch open-source
+
+Lesser-GNU: nur wenn ich Änderungen am open-source code vornehme ist est open-source im Ganzen
+
+BSD nicht reziprok. Nur, wenn ich es verwende, muss ich den Ersteller benachrichtigen.
+
+
+
+-- 8. Testen von Software
+
+Einordung: Teil des Softwareprozesses, der wiederrum in plan/agil unterteilt ist. Testen hat mehrere Phasen
+
+Können das Vorhandensein von Fehlern belegen, aber nicht das keine Fehler mehr vorhanden sidn
+
+Code-Coverage: bestätigung, das alle Code (beim Testen) ausgeführt wurde/wird
+
+- 8.1 Entwicklertests
+
+- Modul/Objecttests: funktionalität, Äquivalenzklassen
+
+- Kompnenten: oft (Komponentn ABC gekapselt)-haben SST  <-Test SST
+
+Parameter SST übertragen Daten oder Funktionsref. Es gibt SST mitgemeinsamem Speicher, gekapselten Prozeduren, welche die Dienste aufrufen (nur Nachrichtenübergabe)
+
+
+
+- 8.2 Test drive dev
+
+- Erst Test, dann inkrementelle Systemerweiterung. Tests gleichzeitig Dokumentation
+
+- 8.3 Freigabetests (release Testing; für andere Als Entwickler, z.B. andere Entwickler Teams,)
+
+Anforderungsbasiert, Szenario-basiert, Leistungstest
+
+
+
+- 8.4 Benutzertests
+
+Alpha Zusammenarbeit mit Entw., Beta Benutzern wird Release zur Vf. gestellt, Abnahme Kunden testen ob es vom E-Team abgenommen wird
+
+
+
+-- 9. Softwareevolution
+
+Einordung: Teil des Softwareprozesses, der wiederrum in plan/agil unterteilt ist.
+
+= Änderungen
+
+Spirale aus: Release/Betrieb -> (neue) Anforderungen, Implementierung, Release/Betrieb
+
+
+
+- 9.2 Dynamik
+
+Lehmans Gesetze (für E-Type systems in real-world acticitiy, in env that needs to adapt to varying requirements):
+
+Für fast alle Artn von betrieblicher Software -> muss, damit diese einen Wert darstellen
+
+Es gibt unvermeidb., kont. Veränderungen -> zunehmende Komplexität (Ressourcen auf Erhalt + Vereinfachung
+
+-> Fehler, Zyklen, Umfang Änderungen, neue Features müssen, bleiben ca. Konstant von Release zu Release
+
+Qualität wird abnehmen (bis sie modifiziert werden um Änderungen im Betriebsumfeld erfolgreich begegnen zu können)
+
+
+
+- 9.3 Software Wartung
+
+Wartungskosten deutlich höher als Entwicklungskosten Zum Teil
+
+Wartungsverträge werden oft mit anderer Firma als dem Entwicklungsteam geschlossen -> schlechte Praxis
+
+Alte Systeme werden immer komlizierter, schwerer nachzuvollziehen
+
+Fehlerbehebung, Anpassung an Umgebung, Hinzufügen von Fnktionalität
+
+17%/17%/66%
+
+- Vorhersage Wartungsaufwand
+
+Hängt von SSTs ab, Geschäftsprozesse, und sonstigen Anforderungen
+
+- Reengenierung vs Ersetzung:
+
+Weniger Risiko und Geringere Kosten. Tätigkeiten beim Reengineering: Prgrammstruktur, Modularisierung und Daten-Reengineering
+
+- Refaktoring:
+
+Entf. dupl Code
+
+Kürzere Methoden
+
+Switch/Case durch Polymorphismus ersetzten:
+
+case BirdA, Bord B, ... ) make sublclasses of bird: subclass birdA, birdB, etc....
+
+"tell, don't ask principle" -> dont ask object what it is, to make if perform actions. Just tell what it needs to do and let it decide itself.
+
+Datenklumpen (z.b. selbes Feld in zwei Klassen) besser kapseln
+
+Matrix:
+
+
+
+Geschäftswert|_
+
+                            Systemqualität
+
+Einschätzung Wert: Benutzung? Wie wichtig sind die unterstützten Geschätsprozesse? Sabilität? Wie wichtig sind die Ausgaben? Umgebungsbeurteilung
+
+Systemqualität: Vertsändlich, DOku, Daten, Leistung, Sparache, Konfigverwqktung, testdaten/Regressionstests?, Personalqualif
+
+
+
+
+
+====================== TEIL 2 Verlässlichkeit & Informationssicherheit
+
+Heutzutage genauso wichtig wie Funktionalität. Sind Computer + Daten geschützt? Kann ich dem System vertrauen?
+
+Oft betriebliche oder menschliche Faktoren entscheiden bei Verstößen
+
+Themen: was ist das? Wie erhebt man reqs dafür? Wie macht mans, wie gewährleiste ich das?
+
+
+
+-- 10.1 Soziotechnische Systeme
+
+Teil des Systemsengineering:
+
+Schichtenmodell
+
+Geräte (Betriebssystem-Kommunikation & Datenverwaltung- Anwendungssysteme-Geschätsprozesse)-Unternehmen-(Gesellschaft)
+
+        <------------------------------------- Softwar eng. ------------------------------>
+
+<---------------------------------------------- Sys eng. --------------------------------------------->        x
+
+Interaktion und Fehler von Software treten an den Grenzen der Schichten auf. Fehler an sich oft nicht schlimm, nur wenn diese sich durch die Schichten portieren.
+
+Nicht deterministisch
+
+10.2 Teile des systems engingeering: architecture, electro technik, mechanical engineering, software engingeering, user IF, ergonomy, electric, construction/bau- ing.
+
+10.4 Entwicklung: Systementwurf -> Subsystems-engingeering -> System-Integration
+
+
+
+-- 11 Verlässlichkeit & Informationssicherheit
+
+Verlässlichkeit (Haupteigenschaft) -> Verfügbarkeit (ist Dienst da?), Zuverlässigkeit (funktioniert der Dienst?), Betriebs- und Informationssicherheit
+
+Es gibt eine wahrgenommene Verlässlichkeit, wenn Benutzer bestimme Dienste nicht anfordern. Schwachstellen könnnen durchaus bekannt sein.
+
+Betriebssicherheit: sind andere vor dem Betrieb des Systems sicher?
+
+Informationssicherheit: Ist das System sicher
+
+
+
+-- 12 Spec von Verlässlichkeit & Informationssicherheit
+
+
+
+-- 12.1 Risikogesteuerte Spez. d. Anf.
+
+- Vorgehen für die folgenden Themen:
+
+Risikoerkennung -> Analyse -> Risikozerlegung-> Risikoreduzierung
+
+Beschreibung   -> Bewerttung ->  Fehler-Urs. -> Verlässlichkeits Anf.
+
+
+
+-- 12.2 Spez Betriebssicherheit
+
+-- 12.2 Spez Zuverlässigkeit
+
+-- 12.2 Spez Informationssicherheit
+
+-- 12.2 Formale spec
+
+
+
+-- 13 Entwicklung verlässlicher Systeme
+
+- Schwachstellen vermeiden, fehlertollerante Maßnahmen
+
+- Redundanz (Daten 2x) + Diversität
+
+- Wohldefinierte Prozesse, die Valid.- und Verifizierbar sind, tragen maßgeblich zum minimieren von Schwachstellen bei. (P bzgl. req Eng. bis Impl.)
+
+- Verlässliche Architekturen sind vom Entwurd her fehlertollerant (einschl. Schutzsysteme, Selbstüberwachende/heilende Komponenten, diversitäre Progrm.)
+
+- Einige Programmierkonstruktue: wie Zeiger, Vererbung, floats, Rekursion, unbedingte Sprunganweisungen sind prinzipiell Fehlerträchtig.
+
+- verschiedene Chips, Hardware, parallele berechnungen von verschiedenen Teanms, etc etc. am Ende Auswahl von alle Berechnungen
+
+
+
+Konsten|                          fällt stark ab. Am Ende wenig Fehler behoben für viel Geld.
+
+              _
+
+              N_Fehler
+
+
+
+-- 14 Security Engineering
+
+Angriffen standhalten
+
+Betr. Vertraulichkeit, Integrität und Verfügbarkeit
+
+
+
+
+
+- 14.1 Management von Sicherheitsrisiken
+
+Risiken einschätzen und Anforderungen ableiten#
+
+
+
+- 14.2 Entwerfen unter Sicherheitsaspekt
+
+Richtlinien für sicheren Systementwurd
+
+Allgemeine Richtlinien Sensibilisieren Entwickler für Dinge, über die Sie sont nicht nachgedacht hätten
+
+- 14.3  Überlebensfähigkeit des Systems
+
+Drückt aus, wie gut das Systm unter  Angriff seine Dienste zur verfügung stellen kann
+
+Rechte auf Minimum reduzieren, wichtige Konfigurationen zentralisieren, damit nicht vergessen werden.
+
+
+
+-- 15 Gewährleistung der Verlässlichkeit und Informationssicherheit
+
+- Statische Methoden/Tests heißt keine Ausführung von Code. Auf Basis von Anforderungen, Entwurf oder Coe : keine: formale Analysen, Modelprüfungen, automatisierte Tests
+
+- Zuverlässigkeit testen: POFOD/ROCOF (P(failure on reqruest)/P(Ausfall)
+
+- Betriebsprofil? -= wie wird die Software betrieben? (p(Eingabe))
+
+- Tests können Erfahrungsbasiert, Angreiferteambasiert, Werkzeugbasiert, Formal verif. sein
+
+- Prozesssicherung: verlässliche Prozesse führen sehr warscheinlich zu verlässlicherere Software
+
+- Nachweis Betriebssicherheit und und Verlässlichkeit: strukturierte Argumentation das etwas nicht eintreten kann: Nachweis(e) unterstütz(t)en die Argumentation, welche die Behauptung (safe) begründet
+
+Sammlung von Docs, Notwendig für Zertifizierung
+
+
+
+-- 16 Wiederverwendung von Software
+
+Von Klassen und Objekten über Komponenten und zu ganzen Teilsystemem möglich
+
+Vorteile sind niedriger Kosten, schnellere Lieferung, geringeres Risiko. Anwendungsframeworks sind Sammlungen von konkreten und Abstrakten Objecten. Entwurfsmuster sind gute Praxis?
+
+- ERP-Systeme sind COTS-Systeme, bei denen das generische COTS-System mit Informationen über den Betrieb und die Kunden konfiguriert wird.
+
+Probs: mangelnde Kontrolle über Funktionalität und Leistung, mangelner Einfluss auf die Weiterentwicklung, Abhängigkeit auf Unterstüzung von externen Anbietern

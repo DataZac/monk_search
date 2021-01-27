@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     app = QtWidgets.QApplication(sys.argv)
     w = pandas_test_widget.PandasWidget(df)
-    w.resize(1200, 1000)
+    w.resize(1200, 150)
     w.show()
     sys.exit(app.exec_())
 

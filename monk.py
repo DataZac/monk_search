@@ -76,59 +76,70 @@ def search(df, **kwargs):
     topics_seach = False
     tags_seach = False
     content_seach = False
-    notes_seach = False
 
     if "tags" in kwargs.keys():
         if len(kwargs['tags']) > 0:
             tags_seach = True
             df_tags = filter_tags(df_topics,kwargs['tags'])
-        else: df_tags = pd.DataFrame({"topics": [],"tags":[], "content":[], "notes":[]})
+        else: df_tags = pd.DataFrame({"topics": [],"tags":[], "content":[]})
 
     if "content" in kwargs.keys():
         if len(kwargs['content']) > 0:
             content_seach = True
             df_content = filter_content(df_topics,kwargs['content'])
-        else: df_content = pd.DataFrame({"topics": [],"tags":[], "content":[], "notes":[]})
+        else: df_content = pd.DataFrame({"topics": [],"tags":[], "content":[]})
 
-    if "notes" in kwargs.keys():
-        if len(kwargs['notes']) > 0:
-            notes_seach = True
-            df_notes = filter_notes(df_topics,kwargs['notes'])
-        else: df_notes = pd.DataFrame({"topics": [],"tags":[], "content":[], "notes":[]})
 
     # check if searched for detailed categories
     other_than_topic = False
-    for search_field in [df_tags, df_content, df_notes]:
+    for search_field in [df_tags, df_content]:
         if search_field.shape[0] > 0 :
             other_than_topic = True
 
     #print(df.shape[0], df_topics.shape[0])
-    print("other than topic", other_than_topic)
+    #print("other than topic", other_than_topic)
     # return joined seach df's ( each filtered by detailed cats)
     if other_than_topic:
-        x = df_tags.append(df_content).append(df_notes)
-        return x.loc[~x.index.duplicated(keep="first")][["topics","tags", "content", "notes"]]
+        x = df_tags.append(df_content)
+        return x.loc[~x.index.duplicated(keep="first")][["topics","tags", "content"]]
 
 
     # case no search match (search frame == base frame) -> retrn no result
     # catch case when frame was already with no result
-    elif (df.shape[0] == df_topics.shape[0]) and (True in [topics_seach, tags_seach, notes_seach, content_seach]):
-        return pd.DataFrame({"topics": ["no result"],"tags":["no result"], "content":["no result"], "notes":["no result"]})
+    elif (df.shape[0] == df_topics.shape[0]) and (True in [topics_seach, tags_seach, content_seach]):
+        return pd.DataFrame({"topics": ["no result"],"tags":["no result"], "content":["no result"]})
 
     # successfull search
     else:
-        print(df_topics)
-        return df_topics[["topics","tags", "content", "notes"]]
+        print("yes")
+        return df_topics[["topics","tags", "content"]]
+
+
+
+
 
 
 if __name__ == '__main__':
-    PATTERN = [".txt"]
+    PATTERN = ["xs1", "xs2"]
     SEARCH_ROOT = "./"
 
-    pd.set_option('display.max_columns', 5)  # or 1000
-    pd.set_option('display.max_rows', 100)  # or 1000
-    pd.set_option('display.max_colwidth', 50)  # or 199
-    pd.set_option('display.width', 200)  # or 199
+    pd.set_option('display.max_columns', 10)  # or 1000
+    pd.set_option('display.max_rows', 1000)  # or 1000
+    pd.set_option('display.max_colwidth', 70)  # or 199
+    pd.set_option('display.expand_frame_repr', False)
+    #epd.set_option('display.width', 500)  # or 199
 
     df = load_data.get_data(load_data.get_valid_files(SEARCH_ROOT, PATTERN))
-    d1 = search(df, topics=[], tags=[""], content=[], notes=[])
+    d2 = search(df, topics=["xs2", "xs1"], tags=[], content=[])
+    from PrettyShower import PrettyShower
+    ps = PrettyShower()
+    ps.show(d2)
+    """
+user = "Username"
+prefix = user + ": "
+preferredWidth = 70
+wrapper = textwrap.TextWrapper(initial_indent=prefix, width=preferredWidth,
+                           subsequent_indent=' '*len(prefix))
+message = "LEFTLEFTLEFTLEFTLEFTLEFTLEFT RIGHTRIGHTRIGHT " * 3
+print wrapper.fill(message)
+    """

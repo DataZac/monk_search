@@ -1,5 +1,5 @@
 import pandas as pd
-
+import imp
 import os
 
 import pdb
@@ -7,7 +7,7 @@ import pdb
 import monk
 
 
-def get_valid_files(root, patterns):
+def get_valid_files(root, patterns, vrb=False):
     valid_files = []
     # can only be interated once
     this_path = os.walk(root)
@@ -17,6 +17,9 @@ def get_valid_files(root, patterns):
                 if pattern in os.path.join(path, name):
                     valid_files.append(os.path.join(path, name))
 
+    if vrb:
+        print("Info: loading from files: ", valid_files)
+
     return valid_files
 
 
@@ -25,13 +28,25 @@ def lines_parser(lines):
     return lines
 
 
-def record_extractor(lines,topic, df):
-    new_row = {"topics": topic,"tags": None, "content": [], "notes": []}
-    for line in lines:
-        if line.startswith("--"):
+def record_extractor(lines,doc, df, vrb=False):
+
+    #topic = os.path.basename(doc)[:-4]
+    topic = doc[-max(len(doc), 40):]
+
+    if vrb:
+        print(lines, topic)
+
+    new_row = {"topics": topic,"tags": None, "content": []}
+    for i, line in enumerate(lines):
+
+        # append at last line
+        if (i == len(lines)-1) and (new_row["tags"] != None):
+            df = df.append(new_row, ignore_index=True)
+
+        elif line.startswith("--"):
             if new_row["tags"] != None:
                 df = df.append(new_row, ignore_index=True)
-                new_row = {"topics":topic, "tags": None, "content": [], "notes": []}
+                new_row = {"topics":topic, "tags": None, "content": []}
 
             new_row["tags"] = line[2:]
 
@@ -39,15 +54,15 @@ def record_extractor(lines,topic, df):
             new_row["content"] += [line]
         else:
             try:
-                new_row["notes"] += [line]
+                pass
             except:
-                "No proper line"
+                print("No proper line")
 
     return df
 
 
-def get_data(paths):
-    df = pd.DataFrame({"topics": [],"tags":[], "content":[], "notes":[]})
+def get_data(paths, vrb=False):
+    df = pd.DataFrame({"topics": [],"tags":[], "content":[]})
     for doc in paths:
         with open(doc) as f:
             try:
@@ -58,19 +73,21 @@ def get_data(paths):
 
 
         lines = lines_parser(lines)
-        topic_name = os.path.basename(doc)[:-4]
-        df = record_extractor(lines, topic_name,df)
+        df = record_extractor(lines, doc,df, vrb=vrb)
 
     return df
 
 if __name__ == '__main__':
     DATA ="./data"
     TXT = os.listdir(DATA)
-    pd.options.display.max_colwidth = 1400
-    PATTERN = [".txt"]
-    SEARCH_ROOT = "./data"
-    print(get_valid_files(DATA, PATTERN))
-    df = get_data(get_valid_files(DATA, PATTERN))
+
+    pd.set_option('display.max_columns', 100)  # or 1000
+    pd.set_option('display.max_rows', 100)  # or 1000
+    pd.set_option('display.max_colwidth', 2000)  # or 199
+    pd.set_option('display.width', 2000)  # or 199
+
+    PATTERN = ["xs1", "xs2"]
+    df = get_data(get_valid_files(DATA, PATTERN, vrb=True), vrb=True)
 
 
 
